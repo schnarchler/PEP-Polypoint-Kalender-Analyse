@@ -1,0 +1,117 @@
+"""
+config.py – Zentrale Konfiguration für den Dienstplan-ETL
+
+Alle Werte werden über Web-UI → Einstellungen konfiguriert und in
+~/.config/dienstplanung/settings.json gespeichert.
+
+config.py ist in .gitignore – im Docker-Build wird config.py.example
+automatisch als config.py verwendet (Dockerfile: cp config.py.example config.py).
+"""
+
+from pathlib import Path
+
+# ── Pfade ──────────────────────────────────────────────────────────────────────
+_SCRIPT_DIR = Path(__file__).parent
+
+# User-configured data directory (see ~/.config/dienstplanung/settings.json)
+try:
+    from settings import effective_base_dir as _eff_base
+    BASE_DIR = _eff_base(_SCRIPT_DIR)
+except Exception:
+    BASE_DIR = _SCRIPT_DIR
+
+# Script-adjacent resources (icons, mappings) – stay with the scripts
+ICONS_DIR        = _SCRIPT_DIR / "Ikone"
+ICON_MAPPING_DIR = _SCRIPT_DIR / "icon_mapping"
+
+# Data resources – follow BASE_DIR
+DB_PATH  = BASE_DIR / "dienstplan.db"
+PDF_DIR  = BASE_DIR / "PEP_pdf"
+_PDF_TEMPLATE_DEFAULT = "Plan - {month} {year}.pdf"
+
+# ── ICS-Export ─────────────────────────────────────────────────────────────────
+_TIMEZONE_DEFAULT = "Europe/Zurich"
+
+# ── Monate (DE) ────────────────────────────────────────────────────────────────
+MONATE_DE: dict[str, int] = {
+    "Januar": 1, "Februar": 2, "März": 3, "Maerz": 3,
+    "April": 4, "Mai": 5, "Juni": 6, "Juli": 7,
+    "August": 8, "September": 9, "Oktober": 10,
+    "November": 11, "Dezember": 12,
+}
+
+# ── E-Mail-Konfiguration ───────────────────────────────────────────────────────
+# Token/Passwort wird NICHT hier eingetragen — wird sicher abgefragt beim Senden.
+# Einmalig im Credential Manager hinterlegen: python mail_send.py --passwort-speichern
+#
+# Alle Werte werden aus den Einstellungen geladen (Web-UI → Einstellungen → SMTP).
+# Fallback-Werte sind generisch und müssen beim ersten Start konfiguriert werden.
+#
+# ── Anbieter-Beispiele ─────────────────────────────────────────────────────────
+# Proton Mail:  smtp.protonmail.ch   Port 587  (SMTP-Token, kein Bridge nötig)
+# Office 365:   smtp.office365.com   Port 587
+# Gmail:        smtp.gmail.com       Port 587  (App-Passwort)
+
+_EMAIL_SMTP_HOST_DEFAULT   = "smtp.example.com"
+_EMAIL_SMTP_PORT_DEFAULT   = 587
+_EMAIL_SMTP_USER_DEFAULT   = ""
+_EMAIL_ABSENDER_DEFAULT    = "Dienstplan <dienstplan@firma.ch>"
+_EMAIL_BETREFF_DEFAULT     = "Dienstplan {monat} {jahr} – {ma_name}"
+_WEBCAL_BETREFF_DEFAULT    = "Dein persönlicher Kalender-Link – {ma_name}"
+_WEBCAL_TEXT_DEFAULT       = """Hallo {vorname}
+
+Hier ist dein persönlicher Kalender-Link für den Dienstplan:
+
+{webcal_link}
+
+Füge diesen Link in deiner Kalender-App als Abonnement hinzu.
+Der Kalender aktualisiert sich automatisch wenn der Dienstplan sich ändert.
+
+Bitte diesen Link nicht weitergeben.
+Bei Geräteverlust oder Austritt bitte melden, damit der Link gesperrt werden kann.
+
+--
+Diese E-Mail wurde automatisch generiert.
+"""
+_EMAIL_TEXT_DEFAULT        = """Hallo {vorname}
+
+Im Anhang findest du deinen persönlichen Dienstplan für {monat} {jahr} als Kalender-Datei (.ics).
+
+Importiere die Datei in deinen Kalender (Outlook, iPhone, Android) oder öffne sie direkt.
+
+Der Dienstplan wurde automatisch generiert und kann Fehler enthalten.
+
+--
+Diese E-Mail wurde automatisch generiert.
+"""
+
+# Überschreiben mit Benutzer-Einstellungen aus ~/.config/dienstplanung/settings.json
+try:
+    from settings import load as _load_settings
+    _s = _load_settings()
+    EMAIL_SMTP_HOST    = _s.get("smtp_host")         or _EMAIL_SMTP_HOST_DEFAULT
+    EMAIL_SMTP_PORT    = int(_s.get("smtp_port") or _EMAIL_SMTP_PORT_DEFAULT)
+    EMAIL_SMTP_USER    = _s.get("smtp_user")         or _EMAIL_SMTP_USER_DEFAULT
+    TIMEZONE           = _s.get("timezone")          or _TIMEZONE_DEFAULT
+    PDF_TEMPLATE       = _s.get("pdf_template")      or _PDF_TEMPLATE_DEFAULT
+    EMAIL_ABSENDER     = _s.get("email_absender")    or _EMAIL_ABSENDER_DEFAULT
+    EMAIL_BETREFF_TPL  = _s.get("email_betreff")        or _EMAIL_BETREFF_DEFAULT
+    EMAIL_TEXT_TPL     = _s.get("email_text")           or _EMAIL_TEXT_DEFAULT
+    WEBCAL_BETREFF_TPL = _s.get("webcal_email_betreff") or _WEBCAL_BETREFF_DEFAULT
+    WEBCAL_TEXT_TPL    = _s.get("webcal_email_text")    or _WEBCAL_TEXT_DEFAULT
+except Exception:
+    EMAIL_SMTP_HOST    = _EMAIL_SMTP_HOST_DEFAULT
+    EMAIL_SMTP_PORT    = _EMAIL_SMTP_PORT_DEFAULT
+    EMAIL_SMTP_USER    = _EMAIL_SMTP_USER_DEFAULT
+    TIMEZONE           = _TIMEZONE_DEFAULT
+    PDF_TEMPLATE       = _PDF_TEMPLATE_DEFAULT
+    EMAIL_ABSENDER     = _EMAIL_ABSENDER_DEFAULT
+    EMAIL_BETREFF_TPL  = _EMAIL_BETREFF_DEFAULT
+    EMAIL_TEXT_TPL     = _EMAIL_TEXT_DEFAULT
+    WEBCAL_BETREFF_TPL = _WEBCAL_BETREFF_DEFAULT
+    WEBCAL_TEXT_TPL    = _WEBCAL_TEXT_DEFAULT
+
+# MA-E-Mail-Adressen: Kürzel → E-Mail (Fallback; primär werden Adressen in der DB verwaltet)
+EMAIL_MA_ADRESSEN: dict[str, str] = {
+    # "mustma":  "max.muster@firma.ch",
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dienstplanung</title>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='BrowserIcon.png') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}?v={{ context.v }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}?v={{ context.v }}">
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.SERVER_CONTEXT = {{ context | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/vendor/react.production.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vendor/react-dom.production.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dist/tweaks-panel.js') }}?v={{ context.v }}"></script>
+<script src="{{ url_for('static', filename='js/dist/components.js') }}?v={{ context.v }}"></script>
+<script src="{{ url_for('static', filename='js/dist/tab-dashboard.js') }}?v={{ context.v }}"></script>
+<script src="{{ url_for('static', filename='js/dist/tab-monatslauf.js') }}?v={{ context.v }}"></script>
+<script src="{{ url_for('static', filename='js/dist/tab-mail.js') }}?v={{ context.v }}"></script>
+<script src="{{ url_for('static', filename='js/dist/tab-mitarbeiter.js') }}?v={{ context.v }}"></script>
+<script src="{{ url_for('static', filename='js/dist/tab-icon-mapping.js') }}?v={{ context.v }}"></script>
+<script src="{{ url_for('static', filename='js/dist/tab-einstellungen.js') }}?v={{ context.v }}"></script>
+<script src="{{ url_for('static', filename='js/dist/tab-analysen.js') }}?v={{ context.v }}"></script>
+<script src="{{ url_for('static', filename='js/dist/app.js') }}?v={{ context.v }}"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# ============================================================
+# .claudeignore — Zugriffskontrolle für Claude
+# ============================================================
+# Dateien und Ordner in dieser Liste werden von Claude NICHT gelesen.
+# Syntax ist identisch mit .gitignore (Glob-Patterns).
+#
+# Zeilen mit "#" sind Kommentare und werden ignoriert.
+# ============================================================
+
+# --- Datenbank (enthält echte Personaldaten) ---
+dienstplan.db
+*.db
+*.sqlite3
+
+# --- Exporte mit persönlichen Daten ---
+ics_export/
+excel_export/
+PEP_pdf/
+
+# --- Backups ---
+backup/
+
+# --- Virtuelle Umgebung & Python-Cache ---
+.envPEP/
+__pycache__/
+
+# --- Sensible Konfiguration (falls vorhanden) ---
+config.py
+# .env
+
+# --- Temporäre Dateien ---
+*.zip
+*.log

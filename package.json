@@ -1,0 +1,13 @@
+{
+  "name": "dienstplanung-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "babel static/js --out-dir static/js/dist --extensions .jsx --ignore static/js/vendor"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.0",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-react": "^7.24.0"
+  }
+}

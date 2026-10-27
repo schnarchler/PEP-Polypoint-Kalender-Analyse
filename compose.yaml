@@ -1,0 +1,24 @@
+services:
+  dienstplanung:
+    build: .
+    container_name: dienstplanung
+    restart: unless-stopped
+    ports:
+      - "5001:5000"
+    volumes:
+      # Datenbank und Daten-Verzeichnisse (persistent via Bind-Mount)
+      - ./data/dienstplan.db:/app/dienstplan.db
+      - ./data/PEP_pdf:/app/PEP_pdf
+      - ./data/pdf_archiv:/app/pdf_archiv
+      - ./data/excel_export:/app/excel_export
+      - ./data/ics_export:/app/ics_export
+      - ./data/backup:/app/backup
+      - ./data/logs:/app/logs
+      # Einstellungen (settings.json muss als Datei existieren, siehe deploy.sh)
+      - ./data/settings.json:/root/.config/dienstplanung/settings.json
+      # Icon-Mapping (kann lokal angepasst werden)
+      - ./icon_mapping:/app/icon_mapping
+    environment:
+      # SMTP-Token für E-Mail-Versand (optional, falls E-Mail genutzt wird)
+      # DIENSTPLAN_SMTP_TOKEN: "dein-smtp-token-hier"
+      PYTHONUNBUFFERED: "1"

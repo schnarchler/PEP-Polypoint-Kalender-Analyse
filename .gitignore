@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtuelle Umgebung
+.envPEP/
+.env/
+venv/
+env/
+
+# Datenbank (enthält persönliche Daten)
+*.db
+*.sqlite3
+
+# Lokale Konfiguration (SMTP, Dienstzeiten-Seed, etc.)
+# Beim ersten Start aus config.py.example kopieren: cp config.py.example config.py
+# Alle Werte sind im Web-UI unter Einstellungen konfigurierbar
+config.py
+deploy.sh
+
+# Exporte / generierte Dateien
+ics_export/
+excel_export/
+PEP_pdf/
+pdf_archiv/
+icon_cache/
+
+# Icon-Mapping: wird beim ersten Icon-Lern-Lauf automatisch angelegt (Tab Icons),
+# enthält betriebsspezifische Dienstzeiten/-codes - nicht versionieren
+icon_mapping/icon_uebersicht.html
+icon_mapping/icon_uebersicht_alle.html
+icon_mapping/icon_fingerprint_map.json
+
+# Backups
+backup/
+
+# Temporäre & lokale Dateien
+*.zip
+*.log
+*.tmp
+
+# Docker Datenpfade
+data/
+
+# Logs
+logs/
+
+# Frontend build
+# dist/ wird MITVERSIONIERT (siehe unten) - Nutzer ohne Node.js/npm
+# brauchen sonst keine lauffähige App (start.bat/.sh bauen nicht automatisch).
+node_modules/
+
+# IDE & OS
+.vscode/settings.json
+.DS_Store
+Thumbs.db
+*.sqbpro

@@ -1,0 +1,10 @@
+services:
+  dienstplanung:
+    build: .
+    container_name: dienstplanung
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./data:/app/data
+      - ./config:/root/.config/dienstplanung
+    restart: unless-stopped

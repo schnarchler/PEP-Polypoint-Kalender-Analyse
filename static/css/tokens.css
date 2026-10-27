@@ -1,0 +1,295 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Dienstplanung — Design Tokens
+   Extracted verbatim from icon_learn.py + mail_adressen.py inline styles.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Surface / Ink ─────────────────────────────────────────────────────── */
+  --bg-page:          #eef1f6;   /* blue-gray page tint                      */
+  --bg-surface:       #ffffff;   /* cards, table, dropdown                   */
+  --bg-row-stripe:    #f8f9fa;   /* nth-child(even) on the icon table        */
+  --bg-row-hover:     #f6f8fc;   /* light hover on every table row           */
+
+  --ink:              #1a1a2e;   /* body text — dark slate-blue, not black   */
+  --ink-muted:        #5b6473;   /* subtitle, body-secondary                 */
+  --ink-faint:        #8a93a3;   /* table headers                            */
+  --ink-placeholder:  #aab2c0;   /* placeholder / disabled                   */
+  --ink-disabled:     #b9c2d2;
+  --ink-divider:      #cfd5df;
+
+  --hairline:         #e8ecf2;
+  --hairline-soft:    #f1f3f8;
+  --hairline-strong:  #d6dbe4;   /* default input border                     */
+
+  /* ── Action — Blue/Navy (primary)  ───────────────────────────────────── */
+  --blue-500:         #1e3a8a;   /* primary action, focus, code badges       */
+  --blue-600:         #17306f;   /* :hover                                   */
+  --blue-100:         #eff4ff;   /* hint-box bg, code badge bg               */
+  --blue-150:         #dde8ff;   /* hint-box code bg                         */
+  --blue-focus-ring:  rgba(30, 58, 138, 0.12);
+
+  /* ── Action — Slate (icon_learn table header)  ────────────────────────── */
+  --slate-700:        #2c3e50;   /* table head bg                            */
+  --slate-link:       #3498db;   /* icon-learn input :focus border           */
+  --slate-focus-ring: rgba(52, 152, 219, 0.15);
+
+  /* ── Success — Green (two-step pair)  ─────────────────────────────────── */
+  --green-500:        #16a34a;   /* canonical success                        */
+  --green-bright:     #2ecc71;   /* save button                              */
+  --green-bright-h:   #27ae60;   /* :hover                                   */
+  --green-bg-soft:    #f0fdf4;   /* filled-input bg, success card            */
+  --green-status:     #16a34a;
+
+  /* ── Danger — Red (two-step pair)  ────────────────────────────────────── */
+  --red-500:          #e53935;   /* canonical danger                         */
+  --red-bright:       #e74c3c;   /* icon-learn "NEU"                         */
+  --red-bright-h:     #c0392b;   /* :hover                                   */
+  --red-bg-soft:      #fff5f5;   /* "new" row bg                             */
+  --red-bg-soft-h:    #ffe8e8;   /* "new" row hover                          */
+
+  /* ── Warning — Amber  ─────────────────────────────────────────────────── */
+  --amber-500:        #f5a623;   /* "changed" input border                   */
+  --amber-600:        #e67e22;   /* hint-new text                            */
+  --amber-bg-soft:    #fffbf0;   /* "changed" input bg                       */
+  --amber-bg-card:    #fff8e1;   /* config-help banner bg                    */
+  --amber-border:     #ffe082;   /* config-help banner border                */
+
+  /* ── Info pairings (½-shift badges, small accents)  ───────────────────── */
+  --info-blue-fg:     #1a73e8;   /* "½ Dienst" V badge fg                    */
+  --info-blue-bg:     #e8f0fe;   /* "½ Dienst" V badge bg                    */
+  --info-pink-fg:     #c2185b;   /* "½ Dienst (H)" badge fg                  */
+  --info-pink-bg:     #fce8f3;   /* "½ Dienst (H)" badge bg                  */
+
+  /* ── Spacing scale  ───────────────────────────────────────────────────── */
+  --space-1:  4px;
+  --space-2:  6px;
+  --space-3:  8px;
+  --space-4:  10px;
+  --space-5:  12px;
+  --space-6:  14px;
+  --space-7:  16px;
+  --space-8:  20px;
+  --space-9:  24px;
+
+  /* ── Radius scale  ────────────────────────────────────────────────────── */
+  --radius-xs:  4px;     /* badge, inline code                                */
+  --radius-sm:  6px;     /* input, button                                     */
+  --radius-md:  7px;     /* button (alt)                                      */
+  --radius-lg:  8px;     /* dropdown, hint-box, toast                         */
+  --radius-xl:  10px;    /* card, table                                       */
+  --radius-pill: 12px;   /* "NEU" count pill (fully rounded at small size)    */
+
+  /* ── Shadows  ─────────────────────────────────────────────────────────── */
+  --shadow-card:   0 2px 8px  rgba(0, 0, 0, 0.08);
+  --shadow-pop:    0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-toast:  0 4px 12px rgba(0, 0, 0, 0.20);
+  --shadow-focus:  0 0 0 3px var(--blue-focus-ring);
+  --shadow-focus-slate: 0 0 0 3px var(--slate-focus-ring);
+  --shadow-active-danger: 0 0 0 3px rgba(231, 76, 60, 0.30);
+
+  /* ── Type  ────────────────────────────────────────────────────────────── */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "Menlo", "Consolas", monospace;
+
+  --text-h1:        1.5rem;     /* mail tool h1 (also used: 1.4 in icon_learn) */
+  --text-h1-tight:  1.4rem;
+  --text-h2:        1.0rem;     /* card title */
+  --text-body:      0.9rem;
+  --text-subtitle:  0.85rem;
+  --text-meta:      0.8rem;     /* table head label */
+  --text-tiny:      0.7rem;     /* "inaktiv" badge */
+  --text-micro:     0.65rem;    /* NEU badge font-size */
+
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold:    700;
+
+  --leading-tight:  1.25;
+  --leading-body:   1.6;
+
+  --letter-uppercase: 0.04em;   /* table head spacing */
+
+  /* ── Motion  ──────────────────────────────────────────────────────────── */
+  --transition-fast: 0.15s;
+  --transition-all:  all var(--transition-fast);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Base element styles — match the literal CSS in the Python tools
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-page);
+  color: var(--ink);
+  margin: 0;
+  padding: var(--space-9);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-size: var(--text-h1-tight);
+  font-weight: var(--weight-bold);
+  margin: 0 0 var(--space-1) 0;
+  line-height: var(--leading-tight);
+}
+h2 {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-semibold);
+  color: #333;
+  margin: 0 0 var(--space-6) 0;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: var(--space-3);
+}
+.subtitle {
+  color: var(--ink-muted);
+  font-size: var(--text-body);
+  margin: 0 0 var(--space-7) 0;
+}
+
+p { margin: 0; line-height: var(--leading-body); }
+
+code {
+  background: var(--blue-100);
+  color: var(--blue-500);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+pre {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  overflow-x: auto;
+  margin: var(--space-3) 0 0;
+}
+
+/* ── Card  ─────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-8);
+}
+
+/* ── Hint box (the one card variant with a left-border accent)  ────────── */
+.hint-box {
+  background: var(--blue-100);
+  border-left: 3px solid var(--blue-500);
+  padding: var(--space-5) var(--space-7);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+.hint-box code { background: var(--blue-150); }
+
+/* ── Buttons  ──────────────────────────────────────────────────────────── */
+.btn {
+  padding: 7px 16px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: var(--weight-semibold);
+  font-family: inherit;
+  transition: var(--transition-all);
+}
+.btn-primary  { background: var(--blue-500);   color: #fff; }
+.btn-primary:hover  { background: var(--blue-600); }
+.btn-primary:disabled { background: #aaa; cursor: not-allowed; }
+.btn-success  { background: var(--green-bright); color: #fff; }
+.btn-success:hover  { background: var(--green-bright-h); }
+.btn-danger   { background: var(--red-bright);   color: #fff; }
+.btn-danger:hover   { background: var(--red-bright-h); }
+.btn-danger.active  { background: var(--red-bright-h); box-shadow: var(--shadow-active-danger); }
+.btn-secondary { background: #ecf0f1; color: #555; }
+.btn-secondary:hover { background: #dfe6e9; }
+.btn-outline-danger { background: #fff; color: var(--red-500); border: 1.5px solid var(--red-500); }
+.btn-outline-danger:hover { background: var(--red-bg-soft); }
+
+/* ── Inputs  ───────────────────────────────────────────────────────────── */
+.input {
+  padding: 7px 10px;
+  border: 1.5px solid var(--hairline-strong);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--bg-surface);
+  transition: border-color var(--transition-fast);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: var(--shadow-focus);
+}
+.input.filled  { border-color: var(--green-500); background: var(--green-bg-soft); }
+.input.changed { border-color: var(--amber-500); background: var(--amber-bg-soft); }
+
+/* ── Table  ────────────────────────────────────────────────────────────── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-surface);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+}
+.table th {
+  background: #f6f8fc;
+  color: var(--ink-faint);
+  padding: 9px 12px;
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--hairline);
+}
+.table td { padding: 8px 12px; vertical-align: middle; border-bottom: 1px solid var(--hairline-soft); }
+.table tr:last-child td { border-bottom: none; }
+.table tr:hover td { background: #f6f8fc; }
+
+/* ── Toast  ────────────────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: var(--space-9);
+  right: var(--space-9);
+  background: var(--green-bright);
+  color: #fff;
+  padding: var(--space-5) var(--space-8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-toast);
+  font-weight: var(--weight-semibold);
+  z-index: 999;
+}
+.toast.error { background: var(--red-500); }
+
+/* ── Badges  ───────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  font-size: var(--text-micro);
+  font-weight: var(--weight-bold);
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  vertical-align: middle;
+}
+.badge-new      { background: var(--red-bright); color: #fff; }
+.badge-half-v   { background: var(--info-blue-bg); color: var(--info-blue-fg); }
+.badge-half-h   { background: var(--info-pink-bg); color: var(--info-pink-fg); }
+.badge-inactive { background: #f5f5f5; color: #999; font-size: var(--text-tiny); padding: 1px 6px; border-radius: var(--radius-pill); }
+
+/* ── Counter pill (red number after "Nur neue anzeigen") ──────────────── */
+.count-pill {
+  display: inline-block;
+  background: var(--red-bright);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 1px 8px;
+  font-size: var(--text-subtitle);
+  margin-left: var(--space-2);
+}
